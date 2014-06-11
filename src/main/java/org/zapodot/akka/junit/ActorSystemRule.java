@@ -6,15 +6,16 @@ import org.junit.rules.ExternalResource;
 import java.util.UUID;
 
 /**
- * An JUnit rule that starts an ActorSystem before running a test (or a class of test). May be used both as a @ClassRule and a @Rule
+ * An JUnit rule that starts an ActorSystem before running a test (or a class of test).
+ * May be used both as a @ClassRule and a @Rule
  *
- * @author sek
+ * @author zapodot at gmail dot com
  */
 public class ActorSystemRule extends ExternalResource {
 
     public static final String IMPLICIT_NAME_PREFIX = "test";
-    private ActorSystem actorSystem;
     private final String name;
+    private ActorSystem actorSystem;
 
     public ActorSystemRule(final String name) {
         this.name = name;
