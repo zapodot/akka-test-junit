@@ -22,6 +22,7 @@
     <properties>
         <junit.version>4.11</junit.version>
         <akka.version>2.3.3</akka.version>
+        <slf4j.version>1.7.7</slf4j.version>
     </properties>
     <dependencies>
         <dependency>
@@ -35,6 +36,24 @@
             <version>${akka.version}</version>
         </dependency>
         <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-api</artifactId>
+            <version>${slf4j.version}</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-simple</artifactId>
+            <version>${slf4j.version}</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.typesafe.akka</groupId>
+            <artifactId>akka-slf4j_2.10</artifactId>
+            <version>${akka.version}</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
             <groupId>com.typesafe.akka</groupId>
             <artifactId>akka-testkit_2.10</artifactId>
             <version>${akka.version}</version>
@@ -46,6 +65,18 @@
         <developerConnection>scm:git:git@github.com:zapodot/akka-test-junit.git</developerConnection>
         <url>https://github.com/zapodot/akka-test-junit</url>
     </scm>
+    <build>
+        <plugins>
+            <plugin>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.1</version>
+                <configuration>
+                    <source>1.7</source>
+                    <target>1.7</target>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
 
 
 </project>

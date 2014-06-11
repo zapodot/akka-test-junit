@@ -12,6 +12,7 @@ import java.util.UUID;
  */
 public class ActorSystemRule extends ExternalResource {
 
+    public static final String IMPLICIT_NAME_PREFIX = "test";
     private ActorSystem actorSystem;
     private final String name;
 
@@ -21,7 +22,7 @@ public class ActorSystemRule extends ExternalResource {
 
     public ActorSystemRule() {
 
-        this("test#" + UUID.randomUUID().toString());
+        this(IMPLICIT_NAME_PREFIX + UUID.randomUUID().toString().replace("-", ""));
     }
 
     public ActorSystem system() {
