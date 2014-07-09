@@ -19,6 +19,13 @@
             <name>Sondre Eikanger Kvalø</name>
         </developer>
     </developers>
+    <licenses>
+        <license>
+            <name>Apache License, Version 2.0</name>
+            <url>license.txt</url>
+            <distribution>repo</distribution>
+        </license>
+    </licenses>
     <properties>
         <junit.version>4.11</junit.version>
         <akka.version>2.3.4</akka.version>
