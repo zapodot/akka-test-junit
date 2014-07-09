@@ -5,6 +5,24 @@ Provides a JUnit rule for testing controlled testing of [Akka](http://akka.io) a
 
 Tested with Akka 2.3.3 and JUnit 4.11.
 
+## Add dependency
+As this library is distributed through the Sonatype OSS repository, it should easy to add it to your project
+
+### Maven
+```xml
+        <dependency>
+            <groupId>org.zapodot</groupId>
+            <artifactId>akka-test-junit</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
+```
+
+### SBT
+```scala
+    libraryDependencies += "org.zapodot" % "akka-test-junit" % "1.0-SNAPSHOT"
+```
+
+
 ## Example
 The ActorSystemRule may be used either as a @Rule (invoked around test methods) or as a @ClassRule (invoked before/after the TestClass)
 
