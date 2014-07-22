@@ -6,7 +6,7 @@ Provides a JUnit rule for controlled testing of [Akka](http://akka.io) actors us
 Tested with Akka 2.3.3 and JUnit 4.11. This tool, included the source code is made available under an Apache 2.0 license.
 
 ## Add dependency
-As this library is distributed through the Sonatype OSS repository, it should easy to add it to your project
+As this library is distributed through the Sonatype OSS repository, it should be easy to add it to your project
 
 ### Maven
 ```xml
