@@ -1,9 +1,8 @@
 package org.zapodot.akka.junit;
 
 import akka.actor.ActorSystem;
+import com.typesafe.config.Config;
 import org.junit.rules.ExternalResource;
-
-import java.util.UUID;
 
 /**
  * An JUnit rule that starts an ActorSystem before running a test (or a class of test).
@@ -13,17 +12,30 @@ import java.util.UUID;
  */
 public class ActorSystemRule extends ExternalResource {
 
-    public static final String IMPLICIT_NAME_PREFIX = "test";
     private final String name;
     private ActorSystem actorSystem;
+    private Config config = null;
+
+    public ActorSystemRule(final String name, final Config config) {
+        this.name = name;
+        this.config = config;
+    }
 
     public ActorSystemRule(final String name) {
         this.name = name;
     }
 
+    /**
+     * @deprecated use the @{link ActorSystemBuilder instead}
+     */
+    @Deprecated
     public ActorSystemRule() {
 
-        this(IMPLICIT_NAME_PREFIX + UUID.randomUUID().toString().replace("-", ""));
+        this(ActorSystemRuleBuilder.defaultActorSystemName());
+    }
+
+    public static ActorSystemRuleBuilder builder() {
+        return ActorSystemRuleBuilder.builder();
     }
 
     public ActorSystem system() {
@@ -32,7 +44,7 @@ public class ActorSystemRule extends ExternalResource {
 
     @Override
     protected void before() throws Throwable {
-        actorSystem = ActorSystem.create(name);
+        actorSystem = config == null ? ActorSystem.create(name) : ActorSystem.create(name, config);
 
     }
 

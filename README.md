@@ -3,7 +3,7 @@
 Provides a JUnit rule for controlled testing of [Akka](http://akka.io) actors using [JUnit](http://junit.org).
 [![Build Status](https://travis-ci.org/zapodot/akka-test-junit.svg?branch=master)](https://travis-ci.org/zapodot/akka-test-junit)
 
-Tested with Akka 2.3.3 and JUnit 4.11. This tool, including the source code is made available under an Apache 2.0 license.
+Tested with Akka 2.3.4 and JUnit 4.11. This tool, including the source code is made available under an Apache 2.0 license.
 
 ## Add dependency
 As this library is distributed through the Sonatype OSS repository, it should be easy to add it to your project
@@ -31,7 +31,7 @@ The ActorSystemRule may be used either as a @Rule (invoked around test methods) 
 public class SimpleAkkaTest {
 
     @Rule
-    public ActorSystemRule actorSystemRule = new ActorSystemRule(getClass().getSimpleName());
+    public ActorSystemRule actorSystemRule = ActorSystemRule.builder().setName(getClass().getSimpleName()).build();
 
     @Test
     public void testRuleUsingASingleActor() throws Exception {
@@ -51,7 +51,7 @@ public class SimpleAkkaTest {
 
     // ClassRules must be instantiated as public static fields on the test class
     @ClassRule
-    public static ActorSystemRule actorSystemRule = new ActorSystemRule(getClass().getSimpleName());
+    public static ActorSystemRule actorSystemRule = ActorSystemRule.builder().setName(getClass().getSimpleName()).build();
 
     @Test
     public void testRuleUsingASingleActor() throws Exception {
@@ -71,6 +71,34 @@ public class SimpleAkkaTest {
     }
 }
 ```
+### With custom configuration (from v. 1.1.0)
+```java
+public class SimpleAkkaTest {
+
+    @Rule
+    public ActorSystemRule actorSystemRule = ActorSystemRule.builder().setName("test-system").setConfigFromString(
+            "akka {\n"
+            + "    loggers = [\"akka.event.slf4j.Slf4jLogger\"]\n"
+            + "    loglevel = DEBUG\n"
+            + "}").build();
+
+    @Test
+    public void testRuleUsingASingleActor() throws Exception {
+        final TestActorRef<SimpleActor> actorTestActorRef = TestActorRef.create(actorSystemRule.system(),
+                                                                          Props.create(SimpleActor.class));
+        final String message = "test";
+        actorTestActorRef.tell(message, ActorRef.noSender());
+        assertEquals(message, actorTestActorRef.underlyingActor().received.peek());
+
+    }
+}
+```
+
+## Changelog
+* Version 1.1 (TO BE RELASED): Added the ActorSystemRuleBuilder and the ability to specify configuration for the actor system
+* Version 1.0: first release
+
+## Limitations
 A few words of caution when using @ClassRule:
 * JUnit might not run the tests in the order you predicted. Check [JUnit execution ordering](//github.com/junit-team/junit/wiki/Test-execution-order).
 * If you name your actors be aware the Akka expects actor names to be unique within the same actor system

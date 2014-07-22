@@ -19,7 +19,7 @@ public class ActorSystemRuleUsingTestkitTest {
         public final Queue<String> received;
 
         public SimpleActor() {
-            received = new LinkedList<String>();
+            received = new LinkedList<>();
 
         }
 
