@@ -1,9 +1,10 @@
 # Akka Test JUNIT 
 
 [![Flattr this git repo](http://api.flattr.com/button/flattr-badge-large.png)](https://flattr.com/submit/auto?user_id=zapodot&url=https://github.com/zapodot/akka-test-junit&title=akka-test-junit&language=&tags=github&category=software)
+[![Build Status](https://travis-ci.org/zapodot/akka-test-junit.svg?branch=master)](https://travis-ci.org/zapodot/akka-test-junit)
 
 Provides a JUnit rule for controlled testing of [Akka](http://akka.io) actors using [JUnit](http://junit.org).
-[![Build Status](https://travis-ci.org/zapodot/akka-test-junit.svg?branch=master)](https://travis-ci.org/zapodot/akka-test-junit)
+
 
 Tested with Akka 2.3.4 and JUnit 4.11. This tool, including the source code is made available under an Apache 2.0 license.
 
