@@ -3,7 +3,7 @@
 Provides a JUnit rule for controlled testing of [Akka](http://akka.io) actors using [JUnit](http://junit.org).
 [![Build Status](https://travis-ci.org/zapodot/akka-test-junit.svg?branch=master)](https://travis-ci.org/zapodot/akka-test-junit)
 
-Tested with Akka 2.3.3 and JUnit 4.11. This tool, included the source code is made available under an Apache 2.0 license.
+Tested with Akka 2.3.3 and JUnit 4.11. This tool, including the source code is made available under an Apache 2.0 license.
 
 ## Add dependency
 As this library is distributed through the Sonatype OSS repository, it should be easy to add it to your project
