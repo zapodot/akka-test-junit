@@ -13,16 +13,16 @@ As this library is distributed through the Sonatype OSS repository, it should be
 
 ### Maven
 ```xml
-        <dependency>
-            <groupId>org.zapodot</groupId>
-            <artifactId>akka-test-junit</artifactId>
-            <version>1.1.0</version>
-        </dependency>
+<dependency>
+    <groupId>org.zapodot</groupId>
+    <artifactId>akka-test-junit</artifactId>
+    <version>1.1.0</version>
+</dependency>
 ```
 
 ### SBT
 ```scala
-    libraryDependencies += "org.zapodot" % "akka-test-junit" % "1.1.0"
+libraryDependencies += "org.zapodot" % "akka-test-junit" % "1.1.0"
 ```
 
 
@@ -76,38 +76,38 @@ public class SimpleAkkaTest {
 ```
 ### With event logging enabled (version >= 1.1.0)
 ```java
-    @Rule
-    public ActorSystemRule actorSystemWithEventLoggerEnabled = ActorSystemRule.builder()
-                                                            .enableEventLogging()
-                                                            .setName(getClass().getSimpleName())
-                                                            .build();
+@Rule
+public ActorSystemRule actorSystemWithEventLoggerEnabled = ActorSystemRule.builder()
+                                                        .enableEventLogging()
+                                                        .setName(getClass().getSimpleName())
+                                                        .build();
 ```
 
 ### With event test listener enabled(version >= 1.1.0)
 ```java
-       @Rule
-       public ActorSystemRule actorSystemRule = ActorSystemRule.builder()
-                                                               .setName(getClass().getSimpleName())
-                                                               .setConfigFromString("akka.loglevel = DEBUG")
-                                                               .enableEventTestListener()
-                                                               .build();
-   
-       @Test
-       public void testEventFilterEnabled() throws Exception {
-           new JavaTestKit(actorSystemRule.system()) {{
-               final ActorRef loggingActor = getSystem().actorOf(Props.create(LoggingActor.class), "loggingActor");
-               Integer result = new EventFilter<Integer>(Logging.Info.class) {
-                   @Override
-                   protected Integer run() {
-   
-                       loggingActor.tell(LoggingActor.INFO_MESSAGE, ActorRef.noSender());
-                       return 1;
-                   }
-               }.from(loggingActor.path().toString()).occurrences(1).exec();
-               assertEquals(1, result.intValue());
-           }};
-   
-       }
+@Rule
+public ActorSystemRule actorSystemRule = ActorSystemRule.builder()
+                                                       .setName(getClass().getSimpleName())
+                                                       .setConfigFromString("akka.loglevel = DEBUG")
+                                                       .enableEventTestListener()
+                                                       .build();
+
+@Test
+public void testEventFilterEnabled() throws Exception {
+   new JavaTestKit(actorSystemRule.system()) {{
+       final ActorRef loggingActor = getSystem().actorOf(Props.create(LoggingActor.class), "loggingActor");
+       Integer result = new EventFilter<Integer>(Logging.Info.class) {
+           @Override
+           protected Integer run() {
+
+               loggingActor.tell(LoggingActor.INFO_MESSAGE, ActorRef.noSender());
+               return 1;
+           }
+       }.from(loggingActor.path().toString()).occurrences(1).exec();
+       assertEquals(1, result.intValue());
+   }};
+
+}
 ```
 
 ### With custom configuration (version >= 1.1.0)
@@ -133,8 +133,8 @@ public class SimpleAkkaTest {
 }
 ```
 ## Changelog
-* Version 1.1 (TO BE RELASED): Added the ActorSystemRuleBuilder and the ability to specify configuration and/or enable logging for the actor system
-* Version 1.0: first release
+* Version 1.1: Added the ActorSystemRuleBuilder and the ability to specify configuration and/or enable logging for the actor system
+* Version 1.0: First release
 
 ## Limitations
 A few words of caution when using @ClassRule:
