@@ -8,11 +8,6 @@ import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
 
-/**
- * This source code is the property of NextGenTel AS
- *
- * @author sek
- */
 public class ActorSystemUsingFluentEventLogEnablement {
 
     @Rule
