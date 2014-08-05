@@ -16,13 +16,13 @@ As this library is distributed through the Sonatype OSS repository, it should be
         <dependency>
             <groupId>org.zapodot</groupId>
             <artifactId>akka-test-junit</artifactId>
-            <version>1.0.0</version>
+            <version>1.1.0</version>
         </dependency>
 ```
 
 ### SBT
 ```scala
-    libraryDependencies += "org.zapodot" % "akka-test-junit" % "1.0.0"
+    libraryDependencies += "org.zapodot" % "akka-test-junit" % "1.1.0"
 ```
 
 
