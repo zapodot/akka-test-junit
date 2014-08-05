@@ -17,6 +17,8 @@ public class ActorSystemRuleBuilder {
                                                     + "    loggers = [\"akka.event.slf4j.Slf4jLogger\"]\n"
                                                     + "    loglevel = DEBUG\n"
                                                     + "}";
+    public static final String CONFIG_TEST_EVENT_LISTENER = "akka.loggers = [akka.testkit.TestEventListener]";
+
     static class ConfigurationBuilder {
         private final ActorSystemRuleBuilder parentBuilder;
         private Config config;
@@ -50,6 +52,11 @@ public class ActorSystemRuleBuilder {
         return this;
     }
 
+    public ActorSystemRuleBuilder enableEventTestListener() {
+        setOrAddConfiguration(ConfigFactory.parseString(CONFIG_TEST_EVENT_LISTENER));
+        return this;
+    }
+
 
     public ActorSystemRuleBuilder enableEventLogging() {
         setOrAddConfiguration(ConfigFactory.parseString(CONFIG_EVENT_LOGGING));
@@ -60,7 +67,7 @@ public class ActorSystemRuleBuilder {
         if(this.config == null) {
             this.config = config;
         } else {
-            this.config.withFallback(config);
+            this.config = config.withFallback(this.config);
         }
     }
 
