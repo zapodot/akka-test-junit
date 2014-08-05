@@ -74,7 +74,43 @@ public class SimpleAkkaTest {
     }
 }
 ```
-### With custom configuration (from v. 1.1.0)
+### With event logging enabled (version >= 1.1.0)
+```java
+    @Rule
+    public ActorSystemRule actorSystemWithEventLoggerEnabled = ActorSystemRule.builder()
+                                                            .enableEventLogging()
+                                                            .setName(getClass().getSimpleName())
+                                                            .build();
+```
+
+### With event test listener enabled(version >= 1.1.0)
+```java
+       @Rule
+       public ActorSystemRule actorSystemRule = ActorSystemRule.builder()
+                                                               .setName(getClass().getSimpleName())
+                                                               .setConfigFromString("akka.loglevel = DEBUG")
+                                                               .enableEventTestListener()
+                                                               .build();
+   
+       @Test
+       public void testEventFilterEnabled() throws Exception {
+           new JavaTestKit(actorSystemRule.system()) {{
+               final ActorRef loggingActor = getSystem().actorOf(Props.create(LoggingActor.class), "loggingActor");
+               Integer result = new EventFilter<Integer>(Logging.Info.class) {
+                   @Override
+                   protected Integer run() {
+   
+                       loggingActor.tell(LoggingActor.INFO_MESSAGE, ActorRef.noSender());
+                       return 1;
+                   }
+               }.from(loggingActor.path().toString()).occurrences(1).exec();
+               assertEquals(1, result.intValue());
+           }};
+   
+       }
+```
+
+### With custom configuration (version >= 1.1.0)
 ```java
 public class SimpleAkkaTest {
 
@@ -96,9 +132,8 @@ public class SimpleAkkaTest {
     }
 }
 ```
-
 ## Changelog
-* Version 1.1 (TO BE RELASED): Added the ActorSystemRuleBuilder and the ability to specify configuration for the actor system
+* Version 1.1 (TO BE RELASED): Added the ActorSystemRuleBuilder and the ability to specify configuration and/or enable logging for the actor system
 * Version 1.0: first release
 
 ## Limitations
