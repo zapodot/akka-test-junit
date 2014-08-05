@@ -13,6 +13,30 @@ import java.util.UUID;
 public class ActorSystemRuleBuilder {
 
     public static final String IMPLICIT_NAME_PREFIX = "test";
+    public static final String CONFIG_EVENT_LOGGING = "akka {\n"
+                                                    + "    loggers = [\"akka.event.slf4j.Slf4jLogger\"]\n"
+                                                    + "    loglevel = DEBUG\n"
+                                                    + "}";
+    static class ConfigurationBuilder {
+        private final ActorSystemRuleBuilder parentBuilder;
+        private Config config;
+
+        ConfigurationBuilder(final ActorSystemRuleBuilder parentBuilder) {
+            this.parentBuilder = parentBuilder;
+        }
+
+        private void setOrAddConfiguration(final Config config) {
+            if(this.config == null) {
+                this.config = config;
+            } else {
+                this.config.withFallback(config);
+            }
+        }
+
+
+
+    }
+
     private String name = defaultActorSystemName();
     private Config config = null;
 
@@ -24,6 +48,20 @@ public class ActorSystemRuleBuilder {
     public ActorSystemRuleBuilder setName(final String name) {
         this.name = name;
         return this;
+    }
+
+
+    public ActorSystemRuleBuilder enableEventLogging() {
+        setOrAddConfiguration(ConfigFactory.parseString(CONFIG_EVENT_LOGGING));
+        return this;
+    }
+
+    private void setOrAddConfiguration(final Config config) {
+        if(this.config == null) {
+            this.config = config;
+        } else {
+            this.config.withFallback(config);
+        }
     }
 
     public ActorSystemRuleBuilder setConfig(final Config config) {
