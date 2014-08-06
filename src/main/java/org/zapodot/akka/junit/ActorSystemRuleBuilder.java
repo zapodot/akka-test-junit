@@ -58,6 +58,33 @@ public class ActorSystemRuleBuilder {
         return this;
     }
 
+    /**
+     * Enables debug logging of receive events for all actors, i.e sets "akka.actor.debug.receive = on"
+     * @return
+     */
+    public ActorSystemRuleBuilder enableReceiveDebugLogging() {
+        setOrAddConfiguration(ConfigFactory.parseString("akka.actor.debug.receive = on"));
+        return this;
+    }
+
+    /**
+     * Enables lifecycle debug logging by setting "akka.actor.debug.lifecycle = on"
+     * @return
+     */
+    public ActorSystemRuleBuilder enableLifecycleDebugLogging() {
+        setOrAddConfiguration(ConfigFactory.parseString("akka.actor.debug.lifecycle = on"));
+        return this;
+    }
+
+    /**
+     * Sets the global log level for Akka to "debug", i.e sets "akka.loglevel= debug"
+     * @return
+     */
+    public ActorSystemRuleBuilder setEventLogLevelDebug() {
+        setOrAddConfiguration(ConfigFactory.parseString("akka.loglevel = debug"));
+        return this;
+    }
+
     private void setOrAddConfiguration(final Config config) {
         if (this.config == null) {
             this.config = config;

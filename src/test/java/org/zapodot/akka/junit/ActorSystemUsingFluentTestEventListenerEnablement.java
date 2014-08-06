@@ -16,8 +16,10 @@ public class ActorSystemUsingFluentTestEventListenerEnablement {
     @Rule
     public ActorSystemRule actorSystemRule = ActorSystemRule.builder()
                                                             .setName(getClass().getSimpleName())
-                                                            .setConfigFromString("akka.loglevel = DEBUG")
                                                             .enableEventTestListener()
+                                                            .enableReceiveDebugLogging()
+                                                            .enableLifecycleDebugLogging()
+                                                            .setEventLogLevelDebug()
                                                             .build();
 
     @Test
