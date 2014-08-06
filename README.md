@@ -16,13 +16,13 @@ As this library is distributed through the Sonatype OSS repository, it should be
 <dependency>
     <groupId>org.zapodot</groupId>
     <artifactId>akka-test-junit</artifactId>
-    <version>1.1.0</version>
+    <version>1.1.1</version>
 </dependency>
 ```
 
 ### SBT
 ```scala
-libraryDependencies += "org.zapodot" % "akka-test-junit" % "1.1.0"
+libraryDependencies += "org.zapodot" % "akka-test-junit" % "1.1.1"
 ```
 
 
@@ -133,6 +133,7 @@ public class SimpleAkkaTest {
 }
 ```
 ## Changelog
+* Version 1.1.1: Fixed a bug in ActorSystemRuleBuilder that replaced the configuration instead of added to it
 * Version 1.1: Added the ActorSystemRuleBuilder and the ability to specify configuration and/or enable logging for the actor system
 * Version 1.0: First release
 
