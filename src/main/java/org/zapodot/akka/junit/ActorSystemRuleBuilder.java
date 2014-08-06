@@ -94,7 +94,7 @@ public class ActorSystemRuleBuilder {
     }
 
     public ActorSystemRuleBuilder setConfig(final Config config) {
-        this.config = config;
+        setOrAddConfiguration(config);
         return this;
     }
 
