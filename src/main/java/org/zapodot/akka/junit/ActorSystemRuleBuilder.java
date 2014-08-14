@@ -102,6 +102,14 @@ public class ActorSystemRuleBuilder {
         return setConfig(ConfigFactory.parseString(configString));
     }
 
+    Config currentConfig() {
+        if(this.config == null) {
+            return null;
+        } else {
+            return ConfigFactory.empty().withFallback(config);
+        }
+    }
+
     public ActorSystemRule build() {
 
         return config == null ? new ActorSystemRule(name) : new ActorSystemRule(name, config);
