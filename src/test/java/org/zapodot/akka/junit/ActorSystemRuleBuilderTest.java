@@ -73,4 +73,11 @@ public class ActorSystemRuleBuilderTest {
         assertEquals("on", config.getString("akka.actor.debug.receive"));
 
     }
+
+    @Test
+    public void testEnableInMemoryJournal() throws Exception {
+
+        final Config config = ActorSystemRule.builder().enableInmemoryJournal().currentConfig();
+        assertEquals("in-memory-journal", config.getString("akka.persistence.journal.plugin"));
+    }
 }

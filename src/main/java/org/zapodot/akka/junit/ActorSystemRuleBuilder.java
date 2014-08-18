@@ -60,6 +60,7 @@ public class ActorSystemRuleBuilder {
 
     /**
      * Enables debug logging of receive events for all actors, i.e sets "akka.actor.debug.receive = on"
+     *
      * @return
      */
     public ActorSystemRuleBuilder enableReceiveDebugLogging() {
@@ -69,6 +70,7 @@ public class ActorSystemRuleBuilder {
 
     /**
      * Enables lifecycle debug logging by setting "akka.actor.debug.lifecycle = on"
+     *
      * @return
      */
     public ActorSystemRuleBuilder enableLifecycleDebugLogging() {
@@ -78,10 +80,29 @@ public class ActorSystemRuleBuilder {
 
     /**
      * Sets the global log level for Akka to "debug", i.e sets "akka.loglevel= debug"
+     *
      * @return
      */
     public ActorSystemRuleBuilder setEventLogLevelDebug() {
         setOrAddConfiguration(ConfigFactory.parseString("akka.loglevel = debug"));
+        return this;
+    }
+
+    /**
+     * Enables the Inmemory Journal which is very useful for testing event sourced actors
+     *
+     * @return
+     * @see <a href="https://github.com/michaelpisula/akka-journal-inmemory/">InMemory journal project page</a>
+     */
+    public ActorSystemRuleBuilder enableInmemoryJournal() {
+        try {
+            getClass().getClassLoader().loadClass("akka.persistence.journal.inmemory.InMemoryJournal");
+        } catch (ClassNotFoundException e) {
+            throw new IllegalStateException(
+                    "Could not find the InMemoryJournal class on the classpath, did you add the akka-persistence-inmemory dependency?",
+                    e);
+        }
+        setOrAddConfiguration(ConfigFactory.parseString("akka.persistence.journal.plugin = \"in-memory-journal\""));
         return this;
     }
 
@@ -103,7 +124,7 @@ public class ActorSystemRuleBuilder {
     }
 
     Config currentConfig() {
-        if(this.config == null) {
+        if (this.config == null) {
             return ConfigFactory.empty();
         } else {
             return ConfigFactory.empty().withFallback(config);
