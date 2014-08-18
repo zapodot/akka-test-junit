@@ -3,6 +3,7 @@ package org.zapodot.akka.junit;
 import akka.event.slf4j.Slf4jLogger;
 import akka.testkit.TestEventListener;
 import com.typesafe.config.Config;
+import com.typesafe.config.ConfigFactory;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
@@ -19,6 +20,26 @@ public class ActorSystemRuleBuilderTest {
     }
 
     @Test
+    public void testEmptyConfig() throws Exception {
+
+        assertEquals(ConfigFactory.empty(), ActorSystemRule.builder().currentConfig());
+    }
+
+    @Test
+    public void testAddExistingConfig() throws Exception {
+        assertEquals(ConfigFactory.empty(), ActorSystemRule.builder().setConfig(ConfigFactory.empty()).currentConfig());
+    }
+
+    @Test
+    public void testAddExistingConfigTwice() throws Exception {
+        assertEquals(ConfigFactory.empty(),
+                     ActorSystemRule.builder()
+                                    .setConfig(ConfigFactory.empty())
+                                    .setConfig(ConfigFactory.empty())
+                                    .currentConfig());
+    }
+
+    @Test
     public void testEnableEventLogging() throws Exception {
         final ActorSystemRuleBuilder actorSystemRuleBuilder = ActorSystemRule.builder().enableEventLogging();
         final Config config = actorSystemRuleBuilder.currentConfig();
@@ -32,9 +53,24 @@ public class ActorSystemRuleBuilderTest {
                 "akka.actor.debug.receive"));
     }
 
+
     @Test
     public void testEnableLifecycleDebugLogging() throws Exception {
-        assertEquals("on", ActorSystemRule.builder().enableLifecycleDebugLogging().currentConfig().getString("akka.actor.debug.lifecycle"));
+        assertEquals("on",
+                     ActorSystemRule.builder()
+                                    .enableLifecycleDebugLogging()
+                                    .currentConfig()
+                                    .getString("akka.actor.debug.lifecycle"));
+
+    }
+
+    @Test
+    public void testEnableLifecycleAndReceiveDebugLogging() throws Exception {
+        final Config config = ActorSystemRule.builder()
+                                             .enableLifecycleDebugLogging()
+                                             .enableReceiveDebugLogging().currentConfig();
+        assertEquals("on", config.getString("akka.actor.debug.lifecycle"));
+        assertEquals("on", config.getString("akka.actor.debug.receive"));
 
     }
 }

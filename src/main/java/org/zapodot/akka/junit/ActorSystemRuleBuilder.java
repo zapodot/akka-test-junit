@@ -104,7 +104,7 @@ public class ActorSystemRuleBuilder {
 
     Config currentConfig() {
         if(this.config == null) {
-            return null;
+            return ConfigFactory.empty();
         } else {
             return ConfigFactory.empty().withFallback(config);
         }
