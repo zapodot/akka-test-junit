@@ -3,6 +3,7 @@
 [![Flattr this git repo](http://api.flattr.com/button/flattr-badge-large.png)](https://flattr.com/submit/auto?user_id=zapodot&url=https://github.com/zapodot/akka-test-junit&title=akka-test-junit&language=&tags=github&category=software)
 [![Build Status](https://travis-ci.org/zapodot/akka-test-junit.svg?branch=master)](https://travis-ci.org/zapodot/akka-test-junit)
 [![Coverage Status](https://img.shields.io/coveralls/zapodot/akka-test-junit.svg)](https://coveralls.io/r/zapodot/akka-test-junit)
+[![Maven Central](https://maven-badges.herokuapp.com/maven-central/org.zapodot/akka-test-junit/badge.svg)](https://maven-badges.herokuapp.com/maven-central/org.zapodot/akka-test-junit)
 
 Provides a JUnit rule for controlled testing of [Akka](http://akka.io) actors using [JUnit](http://junit.org).
 
