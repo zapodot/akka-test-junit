@@ -25,9 +25,9 @@
         </license>
     </licenses>
     <properties>
-        <junit.version>4.11</junit.version>
-        <akka.version>2.3.5</akka.version>
-        <slf4j.version>1.7.7</slf4j.version>
+        <junit.version>4.12</junit.version>
+        <akka.version>2.3.11</akka.version>
+        <slf4j.version>1.7.12</slf4j.version>
         <akka-persistence-inmemory.version>0.2.1</akka-persistence-inmemory.version>
     </properties>
     <dependencies>
@@ -37,28 +37,32 @@
             <version>${junit.version}</version>
         </dependency>
         <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-api</artifactId>
+            <version>${slf4j.version}</version>
+        </dependency>
+        <dependency>
             <groupId>com.github.michaelpisula</groupId>
-            <artifactId>akka-persistence-inmemory_2.10</artifactId>
+            <artifactId>akka-persistence-inmemory_2.11</artifactId>
             <version>${akka-persistence-inmemory.version}</version>
             <scope>runtime</scope>
             <optional>true</optional>
             <exclusions>
                 <exclusion>
                     <groupId>com.github.krasserm</groupId>
-                    <artifactId>akka-persistence-testkit_2.10</artifactId>
+                    <artifactId>akka-persistence-testkit_2.11</artifactId>
                 </exclusion>
             </exclusions>
         </dependency>
         <dependency>
             <groupId>com.typesafe.akka</groupId>
-            <artifactId>akka-actor_2.10</artifactId>
+            <artifactId>akka-actor_2.11</artifactId>
             <version>${akka.version}</version>
         </dependency>
         <dependency>
-            <groupId>org.slf4j</groupId>
-            <artifactId>slf4j-api</artifactId>
-            <version>${slf4j.version}</version>
-            <scope>test</scope>
+            <groupId>com.typesafe.akka</groupId>
+            <artifactId>akka-testkit_2.11</artifactId>
+            <version>${akka.version}</version>
         </dependency>
         <dependency>
             <groupId>org.slf4j</groupId>
@@ -68,15 +72,9 @@
         </dependency>
         <dependency>
             <groupId>com.typesafe.akka</groupId>
-            <artifactId>akka-slf4j_2.10</artifactId>
+            <artifactId>akka-slf4j_2.11</artifactId>
             <version>${akka.version}</version>
             <optional>true</optional>
-        </dependency>
-        <dependency>
-            <groupId>com.typesafe.akka</groupId>
-            <artifactId>akka-testkit_2.10</artifactId>
-            <version>${akka.version}</version>
-            <scope>test</scope>
         </dependency>
     </dependencies>
     <scm>

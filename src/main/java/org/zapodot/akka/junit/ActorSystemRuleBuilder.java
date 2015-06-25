@@ -88,8 +88,9 @@ public class ActorSystemRuleBuilder {
         return this;
     }
 
+
     /**
-     * Enables the Inmemory Journal which is very useful for testing event sourced actors
+     * Enables the In-Memory Journal which is very useful for testing event sourced actors
      *
      * @return
      * @see <a href="https://github.com/michaelpisula/akka-journal-inmemory/">InMemory journal project page</a>
@@ -133,6 +134,7 @@ public class ActorSystemRuleBuilder {
 
     public ActorSystemRule build() {
 
-        return config == null ? new ActorSystemRule(name) : new ActorSystemRule(name, config);
+        return config == null ? new ActorSystemRule(name) : new ActorSystemRule(name,
+                                                                                config);
     }
 }
