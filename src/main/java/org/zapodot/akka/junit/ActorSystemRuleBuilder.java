@@ -134,7 +134,10 @@ public class ActorSystemRuleBuilder {
 
     public ActorSystemRule build() {
 
-        return config == null ? new ActorSystemRule(name) : new ActorSystemRule(name,
-                                                                                config);
+        return new ActorSystemRuleImpl(name, config);
+    }
+
+    public TestKitRule buildTestKit() {
+        return new TestKitRuleImpl(name, config);
     }
 }

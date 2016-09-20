@@ -10,7 +10,7 @@ public class ActorSystemProvidingConfigTest {
     private final static String SYSTEM_NAME = ActorSystemProvidingConfigTest.class.getSimpleName();
 
     @Rule
-    public ActorSystemRule actorSystemRule = ActorSystemRule.builder().setName(SYSTEM_NAME).setConfigFromString(
+    public ActorSystemRule actorSystemRule = ActorSystemRuleImpl.builder().setName(SYSTEM_NAME).setConfigFromString(
             "akka {\n"
             + "    loggers = [\"akka.event.slf4j.Slf4jLogger\"]\n"
             + "    loglevel = DEBUG\n"

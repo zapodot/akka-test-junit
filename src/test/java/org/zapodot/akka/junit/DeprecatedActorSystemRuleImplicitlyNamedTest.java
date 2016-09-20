@@ -9,7 +9,7 @@ import static org.junit.Assert.assertTrue;
 public class DeprecatedActorSystemRuleImplicitlyNamedTest {
 
     @Rule
-    public ActorSystemRule actorSystemRule = new ActorSystemRule();
+    public ActorSystemRule actorSystemRule = new ActorSystemRuleImpl();
 
     @Test
     public void testActorSystemIsRunning() throws Exception {

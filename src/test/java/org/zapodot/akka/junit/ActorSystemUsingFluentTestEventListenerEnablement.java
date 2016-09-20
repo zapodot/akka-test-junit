@@ -14,7 +14,7 @@ import static org.junit.Assert.assertEquals;
 public class ActorSystemUsingFluentTestEventListenerEnablement {
 
     @Rule
-    public ActorSystemRule actorSystemRule = ActorSystemRule.builder()
+    public ActorSystemRule actorSystemRule = ActorSystemRuleImpl.builder()
                                                             .setName(getClass().getSimpleName())
                                                             .enableEventTestListener()
                                                             .enableReceiveDebugLogging()

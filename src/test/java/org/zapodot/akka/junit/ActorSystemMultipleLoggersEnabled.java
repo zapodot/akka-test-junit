@@ -8,7 +8,7 @@ import static org.junit.Assert.assertEquals;
 public class ActorSystemMultipleLoggersEnabled {
 
     @Rule
-    public ActorSystemRule actorSystemRule = ActorSystemRule.builder()
+    public ActorSystemRule actorSystemRule = ActorSystemRuleImpl.builder()
                                                             .setName(getClass().getSimpleName())
                                                             .enableEventLogging()
                                                             .enableEventTestListener()

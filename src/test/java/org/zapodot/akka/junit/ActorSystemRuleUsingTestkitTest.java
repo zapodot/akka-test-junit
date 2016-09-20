@@ -34,7 +34,7 @@ public class ActorSystemRuleUsingTestkitTest {
     }
 
     @Rule
-    public ActorSystemRule actorSystemRule = new ActorSystemRule(getClass().getSimpleName());
+    public ActorSystemRule actorSystemRule = new ActorSystemRuleImpl(getClass().getSimpleName());
 
     @Test
     public void testRuleUsingASingleActor() throws Exception {

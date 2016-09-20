@@ -8,6 +8,7 @@ import org.junit.Test;
 
 import java.util.concurrent.TimeUnit;
 
+import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
 public class UnhandledMessageTest {
@@ -20,7 +21,7 @@ public class UnhandledMessageTest {
     }
 
     @Rule
-    public ActorSystemRule actorSystemRule = ActorSystemRule.builder().build();
+    public ActorSystemRule actorSystemRule = ActorSystemRuleImpl.builder().build();
 
     @Test
     public void testUnhandled() throws Exception {
@@ -29,6 +30,7 @@ public class UnhandledMessageTest {
         unhandledActor.tell(letter, ActorRef.noSender());
         Thread.sleep(TimeUnit.SECONDS.toMillis(1L));
         assertTrue(actorSystemRule.isUnhandled(letter));
+        assertFalse(actorSystemRule.isUnhandled("somethingElse"));
 
     }
 }
