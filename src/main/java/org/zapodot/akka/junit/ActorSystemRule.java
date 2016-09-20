@@ -67,6 +67,7 @@ public class ActorSystemRule extends ExternalResource {
 
     @Override
     protected void before() throws Throwable {
+        LOGGER.debug("Instantiating ActorSystem \"{}\"", name);
         actorSystem = config == null ? ActorSystem.create(name) : ActorSystem.create(name, config);
 
         unhandledMessagesConsumer = TestActorRef.create(actorSystem, Props.create(ConsumingActor.class), "unhandledMessagesConsumer");
@@ -77,7 +78,10 @@ public class ActorSystemRule extends ExternalResource {
     @Override
     protected void after() {
 
-        JavaTestKit.shutdownActorSystem(actorSystem);
+        if(! actorSystem.isTerminated()) {
+            LOGGER.debug("Shutting down ActorSystem \"{}\"", name);
+            JavaTestKit.shutdownActorSystem(actorSystem);
+        }
         actorSystem = null;
     }
 
