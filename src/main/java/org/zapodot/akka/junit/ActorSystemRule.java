@@ -3,6 +3,7 @@ package org.zapodot.akka.junit;
 import akka.actor.ActorSystem;
 import akka.actor.Props;
 import akka.actor.UnhandledMessage;
+import akka.testkit.JavaTestKit;
 import akka.testkit.TestActorRef;
 import com.typesafe.config.Config;
 import org.junit.rules.ExternalResource;
@@ -76,7 +77,7 @@ public class ActorSystemRule extends ExternalResource {
     @Override
     protected void after() {
 
-        actorSystem.shutdown();
+        JavaTestKit.shutdownActorSystem(actorSystem);
         actorSystem = null;
     }
 
