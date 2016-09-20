@@ -14,9 +14,9 @@ public class ActorSystemRuleBuilder {
 
     public static final String IMPLICIT_NAME_PREFIX = "test";
     public static final String CONFIG_EVENT_LOGGING = "akka {\n"
-                                                      + "    loggers = [\"akka.event.slf4j.Slf4jLogger\"]\n"
-                                                      + "    loglevel = DEBUG\n"
-                                                      + "}";
+            + "    loggers = [\"akka.event.slf4j.Slf4jLogger\"]\n"
+            + "    loglevel = DEBUG\n"
+            + "}";
     public static final String CONFIG_TEST_EVENT_LISTENER = "akka.loggers = [akka.testkit.TestEventListener]";
 
     private String name = defaultActorSystemName();
@@ -40,7 +40,7 @@ public class ActorSystemRuleBuilder {
      * Enables the TestEventListener. NB! only one logger will be configured at the time. Calling both this method and
      * {@link #enableEventLogging()} will result in only the the latest enable call taking effect.
      *
-     * @return
+     * @return the same {@link ActorSystemRuleBuilder} instance with the EventTestListener enabled
      */
     public ActorSystemRuleBuilder enableEventTestListener() {
         setOrAddConfiguration(ConfigFactory.parseString(CONFIG_TEST_EVENT_LISTENER));
@@ -51,7 +51,7 @@ public class ActorSystemRuleBuilder {
      * Enables the TestEventListener. NB! only one logger will be configured at the time. Calling both this method and
      * {@link #enableEventTestListener()} ()} will result in only the the latest enable call taking effect.
      *
-     * @return
+     * @return the same {@link ActorSystemRuleBuilder} instance with event logging enabled
      */
     public ActorSystemRuleBuilder enableEventLogging() {
         setOrAddConfiguration(ConfigFactory.parseString(CONFIG_EVENT_LOGGING));
@@ -61,7 +61,7 @@ public class ActorSystemRuleBuilder {
     /**
      * Enables debug logging of receive events for all actors, i.e sets "akka.actor.debug.receive = on"
      *
-     * @return
+     * @return the same {@link ActorSystemRuleBuilder} instance with receive debug logging enabled
      */
     public ActorSystemRuleBuilder enableReceiveDebugLogging() {
         setOrAddConfiguration(ConfigFactory.parseString("akka.actor.debug.receive = on"));
@@ -71,7 +71,7 @@ public class ActorSystemRuleBuilder {
     /**
      * Enables lifecycle debug logging by setting "akka.actor.debug.lifecycle = on"
      *
-     * @return
+     * @return the same {@link ActorSystemRuleBuilder} instance with lifecycle debug logging enabled
      */
     public ActorSystemRuleBuilder enableLifecycleDebugLogging() {
         setOrAddConfiguration(ConfigFactory.parseString("akka.actor.debug.lifecycle = on"));
@@ -81,7 +81,7 @@ public class ActorSystemRuleBuilder {
     /**
      * Sets the global log level for Akka to "debug", i.e sets "akka.loglevel= debug"
      *
-     * @return
+     * @return the same {@link ActorSystemRuleBuilder} instance with loglevel for the event log set to DEBUG
      */
     public ActorSystemRuleBuilder setEventLogLevelDebug() {
         setOrAddConfiguration(ConfigFactory.parseString("akka.loglevel = debug"));
@@ -92,7 +92,7 @@ public class ActorSystemRuleBuilder {
     /**
      * Enables the In-Memory Journal which is very useful for testing event sourced actors
      *
-     * @return
+     * @return the same {@link ActorSystemRuleBuilder} instance with an in-memory journal enabled
      * @see <a href="https://github.com/michaelpisula/akka-journal-inmemory/">InMemory journal project page</a>
      */
     public ActorSystemRuleBuilder enableInmemoryJournal() {
