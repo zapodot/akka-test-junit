@@ -4,7 +4,7 @@
 [![Build Status](https://travis-ci.org/zapodot/akka-test-junit.svg?branch=master)](https://travis-ci.org/zapodot/akka-test-junit)
 [![Coverage Status](https://img.shields.io/coveralls/zapodot/akka-test-junit.svg)](https://coveralls.io/r/zapodot/akka-test-junit)
 [![Maven Central](https://maven-badges.herokuapp.com/maven-central/org.zapodot/akka-test-junit/badge.svg)](https://maven-badges.herokuapp.com/maven-central/org.zapodot/akka-test-junit)
-[![License: Apache 2](https://img.shields.io/badge/license-Apache%202-green.svg)]
+[![License: Apache 2](https://img.shields.io/badge/license-Apache%202-green.svg)](https://www.apache.org/licenses/LICENSE-2.0)
 
 Provides a JUnit rule for controlled testing of [Akka](http://akka.io) actors using [JUnit](http://junit.org).
 
