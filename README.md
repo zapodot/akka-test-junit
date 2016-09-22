@@ -20,6 +20,7 @@ As this library is distributed through the Sonatype OSS repository, it should be
     <groupId>org.zapodot</groupId>
     <artifactId>akka-test-junit</artifactId>
     <version>1.1.2</version>
+    <scope>test</scope>
 </dependency>
 ```
 
