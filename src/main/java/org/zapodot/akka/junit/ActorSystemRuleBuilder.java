@@ -137,7 +137,4 @@ public class ActorSystemRuleBuilder {
         return new ActorSystemRuleImpl(name, config);
     }
 
-    public TestKitRule buildTestKit() {
-        return new TestKitRuleImpl(name, config);
-    }
 }

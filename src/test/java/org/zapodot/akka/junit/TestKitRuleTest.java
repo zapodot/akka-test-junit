@@ -31,7 +31,7 @@ public class TestKitRuleTest {
     }
 
     @Rule
-    public TestKitRule testKitRule = ActorSystemRuleBuilder.builder().setName(getClass().getSimpleName()).buildTestKit();
+    public ActorSystemRule testKitRule = ActorSystemRuleBuilder.builder().setName(getClass().getSimpleName()).build();
 
     @Test
     public void testRule() throws Exception {

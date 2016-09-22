@@ -43,6 +43,8 @@
         <maven-javadoc-plugin.version>2.10.2</maven-javadoc-plugin.version>
         <nexus-staging-maven-plugin.version>1.6.5</nexus-staging-maven-plugin.version>
         <maven-source-plugin.version>2.4</maven-source-plugin.version>
+        <coveralls-maven-plugin.version>3.1.0</coveralls-maven-plugin.version>
+        <jacoco-maven-plugin.version>0.7.5.201505241946</jacoco-maven-plugin.version>
     </properties>
     <profiles>
         <profile>
@@ -171,6 +173,7 @@
                     <links>
                         <link>http://junit.org/junit4/javadoc/latest/</link>
                         <link>http://docs.oracle.com/javase/7/docs/api/</link>
+                        <link>http://doc.akka.io/japi/akka/${akka.version}/</link>
                     </links>
                     <locale>en</locale>
                     <keywords>true</keywords>
@@ -180,12 +183,12 @@
             <plugin>
                 <groupId>org.eluder.coveralls</groupId>
                 <artifactId>coveralls-maven-plugin</artifactId>
-                <version>3.1.0</version>
+                <version>${coveralls-maven-plugin.version}</version>
             </plugin>
             <plugin>
                 <groupId>org.jacoco</groupId>
                 <artifactId>jacoco-maven-plugin</artifactId>
-                <version>0.7.5.201505241946</version>
+                <version>${jacoco-maven-plugin.version}</version>
                 <executions>
                     <execution>
                         <id>prepare-agent</id>

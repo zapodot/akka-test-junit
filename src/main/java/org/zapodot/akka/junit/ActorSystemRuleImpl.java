@@ -27,6 +27,7 @@ public class ActorSystemRuleImpl extends ExternalResource implements ActorSystem
     private ActorSystem actorSystem;
     private Config config = null;
     private TestActorRef<ConsumingActor> unhandledMessagesConsumer;
+    private JavaTestKit javaTestKit;
 
 
     public ActorSystemRuleImpl(final String name,
@@ -62,14 +63,15 @@ public class ActorSystemRuleImpl extends ExternalResource implements ActorSystem
         return false;
     }
 
-    /**
-     * Provides access to the {@link ActorSystem} that was instantiated before the test was run
-     *
-     * @return the currently running {@link ActorSystem}
-     */
+
     @Override
     public ActorSystem system() {
         return actorSystem;
+    }
+
+    @Override
+    public JavaTestKit testKit() {
+        return javaTestKit;
     }
 
     @Override
@@ -79,12 +81,14 @@ public class ActorSystemRuleImpl extends ExternalResource implements ActorSystem
 
         unhandledMessagesConsumer = TestActorRef.create(actorSystem, Props.create(ConsumingActor.class), "unhandledMessagesConsumer");
         actorSystem.eventStream().subscribe(unhandledMessagesConsumer, UnhandledMessage.class);
+        javaTestKit = new JavaTestKit(actorSystem);
 
     }
 
     @Override
     protected void after() {
 
+        javaTestKit = null;
         if (!actorSystem.isTerminated()) {
             LOGGER.debug("Shutting down ActorSystem \"{}\"", name);
             JavaTestKit.shutdownActorSystem(actorSystem);
