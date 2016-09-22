@@ -43,7 +43,7 @@ The ActorSystemRule may be used either as a @Rule (invoked around test methods) 
 public class SimpleAkkaTest {
 
     @Rule
-    public ActorSystemRule actorSystemRule = ActorSystemRule.builder().setName(getClass().getSimpleName()).build();
+    public ActorSystemRule actorSystemRule = new ActorSystemRuleBuilder().setName(getClass().getSimpleName()).build();
 
     @Test
     public void testRuleUsingASingleActor() throws Exception {
@@ -52,8 +52,19 @@ public class SimpleAkkaTest {
         final String message = "test";
         actorTestActorRef.tell(message, ActorRef.noSender());
         assertEquals(message, actorTestActorRef.underlyingActor().received.peek());
+        
+        // Use the testKit() to get an instance of JavaTestKit directly
+        // In this example EchoActor simply sends the message to the designated sender actor
+        final JavaTestKit testKit = actorSystemRule.testKit();
+        final Props simpleActorProps = Props.create(EchoActor.class);
+        final ActorRef simpleActor = actorSystemRule.system().actorOf(simpleActorProps);
+        simpleActor.tell("A great message", testKit.getTestActor()); // Use testActor as sender
+        testKit.expectMsgEquals(FiniteDuration.apply(1L, TimeUnit.SECONDS), "A great message");
+           
 
     }
+
+        
 }
 ```
 
