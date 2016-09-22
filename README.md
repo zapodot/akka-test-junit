@@ -19,19 +19,19 @@ As this library is distributed through the Sonatype OSS repository, it should be
 <dependency>
     <groupId>org.zapodot</groupId>
     <artifactId>akka-test-junit</artifactId>
-    <version>1.1.2</version>
+    <version>1.2.0</version>
     <scope>test</scope>
 </dependency>
 ```
 
 ### SBT
 ```scala
-libraryDependencies += "org.zapodot" % "akka-test-junit" % "1.1.2"
+libraryDependencies += "org.zapodot" % "akka-test-junit" % "1.2.0"
 ```
 
 ### Gradle
 ```groovy
-compile 'org.zapodot:akka-test-junit:1.1.2'
+compile 'org.zapodot:akka-test-junit:1.2.0'
 ```
 
 
