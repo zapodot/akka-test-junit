@@ -10,7 +10,7 @@ import scala.concurrent.duration.FiniteDuration;
 
 import java.util.concurrent.TimeUnit;
 
-public class TestKitRuleTest {
+public class TestKitTest {
 
     public static class SimpleActor extends UntypedActor {
 
