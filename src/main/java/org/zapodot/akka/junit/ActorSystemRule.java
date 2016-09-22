@@ -5,6 +5,9 @@ import akka.testkit.JavaTestKit;
 import org.junit.rules.TestRule;
 
 /**
+ * General contract for a JUnit rule that starts an ActorSystem before running a test (or a class of test).
+ * May be used both as a @ClassRule and a @Rule
+ *
  * @author zapodot at gmail dot com
  */
 public interface ActorSystemRule extends TestRule {
