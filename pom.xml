@@ -3,7 +3,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>org.zapodot</groupId>
     <artifactId>akka-test-junit</artifactId>
-    <version>1.2.0</version>
+    <version>1.2.1-SNAPSHOT</version>
     <description>Useful JUnit hooks for testing Akka actors</description>
     <name>${project.artifactId}</name>
     <url>https://github.com/zapodot/akka-test-junit</url>
