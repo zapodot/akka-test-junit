@@ -5,6 +5,8 @@
     <artifactId>akka-test-junit</artifactId>
     <version>1.2.0</version>
     <description>Useful JUnit hooks for testing Akka actors</description>
+    <name>${project.artifactId}</name>
+    <url>https://github.com/zapodot/akka-test-junit</url>
     <prerequisites>
         <maven>3.0.4</maven>
     </prerequisites>
