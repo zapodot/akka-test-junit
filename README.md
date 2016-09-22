@@ -28,6 +28,11 @@ As this library is distributed through the Sonatype OSS repository, it should be
 libraryDependencies += "org.zapodot" % "akka-test-junit" % "1.1.2"
 ```
 
+### Gradle
+```groovy
+compile 'org.zapodot:akka-test-junit:1.1.2'
+```
+
 
 ## Example
 The ActorSystemRule may be used either as a @Rule (invoked around test methods) or as a @ClassRule (invoked before/after the TestClass)
