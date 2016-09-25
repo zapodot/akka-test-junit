@@ -47,7 +47,7 @@ public class ActorSystemRuleImpl extends ExternalResource implements ActorSystem
     }
 
     public ActorSystemRuleImpl(final String name) {
-        this(name, null, DEFAULT_SHUTDOWN_TIMEOUT);
+        this(name, null);
     }
 
     /**
