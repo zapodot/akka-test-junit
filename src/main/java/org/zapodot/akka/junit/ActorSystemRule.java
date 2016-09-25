@@ -12,6 +12,8 @@ import org.junit.rules.TestRule;
  */
 public interface ActorSystemRule extends TestRule {
 
+    long DEFAULT_SHUTDOWN_TIMEOUT = 2L;
+
     /**
      * Assertion that is used to check whether a given message was unhandled
      *
@@ -19,6 +21,14 @@ public interface ActorSystemRule extends TestRule {
      * @return boolean indicating whether the message was unhandled
      */
     boolean isUnhandled(Object letter);
+
+    /**
+     * Provides access to the current shutdown timeout setting, which defaults to {@link #DEFAULT_SHUTDOWN_TIMEOUT}
+     * if not explicitly set
+     *
+     * @return the number of seconds that the test runner will wait when shutting down the ActorSystem
+     */
+    long getShutdownTimeoutSeconds();
 
     /**
      * Provides access to the {@link ActorSystem} that was instantiated before the test was run

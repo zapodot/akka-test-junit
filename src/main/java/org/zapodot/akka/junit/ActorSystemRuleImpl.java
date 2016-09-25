@@ -10,8 +10,10 @@ import org.junit.rules.ExternalResource;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.zapodot.akka.junit.actor.ConsumingActor;
+import scala.concurrent.duration.Duration;
 
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 /**
  * An JUnit rule that starts an ActorSystem before running a test (or a class of test).
@@ -28,16 +30,24 @@ public class ActorSystemRuleImpl extends ExternalResource implements ActorSystem
     private Config config = null;
     private TestActorRef<ConsumingActor> unhandledMessagesConsumer;
     private JavaTestKit javaTestKit;
+    private final long shutdownTimeoutSeconds;
 
 
     public ActorSystemRuleImpl(final String name,
-                               final Config config) {
+                               final Config config,
+                               final long shutdownTimeoutSeconds) {
         this.name = name;
         this.config = config;
+        this.shutdownTimeoutSeconds = shutdownTimeoutSeconds;
+    }
+
+    public ActorSystemRuleImpl(final String name,
+                               final Config config) {
+        this(name, config, DEFAULT_SHUTDOWN_TIMEOUT);
     }
 
     public ActorSystemRuleImpl(final String name) {
-        this(name, null);
+        this(name, null, DEFAULT_SHUTDOWN_TIMEOUT);
     }
 
     /**
@@ -63,6 +73,11 @@ public class ActorSystemRuleImpl extends ExternalResource implements ActorSystem
         return false;
     }
 
+
+    @Override
+    public long getShutdownTimeoutSeconds() {
+        return shutdownTimeoutSeconds;
+    }
 
     @Override
     public ActorSystem system() {
@@ -91,7 +106,7 @@ public class ActorSystemRuleImpl extends ExternalResource implements ActorSystem
         javaTestKit = null;
         if (!actorSystem.isTerminated()) {
             LOGGER.debug("Shutting down ActorSystem \"{}\"", name);
-            JavaTestKit.shutdownActorSystem(actorSystem);
+            JavaTestKit.shutdownActorSystem(actorSystem, Duration.apply(shutdownTimeoutSeconds, TimeUnit.SECONDS), true);
         }
         actorSystem = null;
     }

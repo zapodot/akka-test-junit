@@ -21,6 +21,7 @@ public class ActorSystemRuleBuilder {
 
     private String name = defaultActorSystemName();
     private Config config = null;
+    private long shutdownTimeoutInSeconds = ActorSystemRule.DEFAULT_SHUTDOWN_TIMEOUT;
 
 
     public static ActorSystemRuleBuilder builder() {
@@ -107,6 +108,18 @@ public class ActorSystemRuleBuilder {
         return this;
     }
 
+    /**
+     * Allows the developer to tune the shutdown timeout which is the maximum number of seconds to wait while shutting
+     * down the ActorSystem. Will default to {@link ActorSystemRule#DEFAULT_SHUTDOWN_TIMEOUT} if this method is not called.
+     *
+     * @param shutdownTimeoutInSeconds
+     * @return the same builder with the shutdown timeout set
+     */
+    public ActorSystemRuleBuilder withShutdownTimeoutInSeconds(final long shutdownTimeoutInSeconds) {
+        this.shutdownTimeoutInSeconds = shutdownTimeoutInSeconds;
+        return this;
+    }
+
     private void setOrAddConfiguration(final Config config) {
         if (this.config == null) {
             this.config = config;
@@ -134,7 +147,7 @@ public class ActorSystemRuleBuilder {
 
     public ActorSystemRule build() {
 
-        return new ActorSystemRuleImpl(name, config);
+        return new ActorSystemRuleImpl(name, config, shutdownTimeoutInSeconds);
     }
 
 }

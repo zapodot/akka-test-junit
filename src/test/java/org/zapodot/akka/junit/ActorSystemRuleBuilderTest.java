@@ -80,4 +80,11 @@ public class ActorSystemRuleBuilderTest {
         final Config config = ActorSystemRuleImpl.builder().enableInmemoryJournal().currentConfig();
         assertEquals("in-memory-journal", config.getString("akka.persistence.journal.plugin"));
     }
+
+    @Test
+    public void testSetShutownTimeout() throws Exception {
+        final long shutdownTimeoutInSeconds = 5L;
+        final ActorSystemRule actorSystemRule = ActorSystemRuleBuilder.builder().withShutdownTimeoutInSeconds(shutdownTimeoutInSeconds).build();
+        assertEquals(shutdownTimeoutInSeconds, actorSystemRule.getShutdownTimeoutSeconds());
+    }
 }
