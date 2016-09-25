@@ -11,13 +11,13 @@ import static org.junit.Assert.assertEquals;
 public class ActorSystemUsingFluentEventLogEnablement {
 
     @Rule
-    public ActorSystemRule actorSystemWithEventLoggerEnabled = ActorSystemRuleImpl.builder()
+    public ActorSystemRule actorSystemWithEventLoggerEnabled = ActorSystemRuleBuilder.builder()
                                                             .enableEventLogging()
                                                             .setName(getClass().getSimpleName())
                                                             .build();
 
     @Rule
-    public ActorSystemRule actorSystemWithoutEventLoggerEnabled = ActorSystemRuleImpl.builder()
+    public ActorSystemRule actorSystemWithoutEventLoggerEnabled = ActorSystemRuleBuilder.builder()
                                                             .setName(getClass().getSimpleName())
                                                             .build();
 

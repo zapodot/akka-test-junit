@@ -23,7 +23,20 @@ public class ActorSystemRuleBuilder {
     private Config config = null;
     private long shutdownTimeoutInSeconds = ActorSystemRule.DEFAULT_SHUTDOWN_TIMEOUT;
 
+    /**
+     * Builds a plain instance using only default settings
+     *
+     * @return a new {@link ActorSystemRule} instance with default settings applied
+     */
+    public static ActorSystemRule buildWithDefaults() {
+        return builder().build();
+    }
 
+    /**
+     * Creates a new {@link ActorSystemRuleBuilder} allowing for customization of the underlying {@link akka.actor.ActorSystem}
+     *
+     * @return a new {@link ActorSystemRuleBuilder} instance
+     */
     public static ActorSystemRuleBuilder builder() {
         return new ActorSystemRuleBuilder();
     }
@@ -32,6 +45,12 @@ public class ActorSystemRuleBuilder {
         return IMPLICIT_NAME_PREFIX + UUID.randomUUID().toString().replace("-", "");
     }
 
+    /**
+     * Allows you to set a name for the underlying {@link akka.actor.ActorSystem} explicitly
+     *
+     * @param name the name to use
+     * @return the same {@link ActorSystemRuleBuilder} with the given name applied
+     */
     public ActorSystemRuleBuilder setName(final String name) {
         this.name = name;
         return this;

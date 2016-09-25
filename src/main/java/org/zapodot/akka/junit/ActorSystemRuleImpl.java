@@ -59,6 +59,11 @@ public class ActorSystemRuleImpl extends ExternalResource implements ActorSystem
         this(ActorSystemRuleBuilder.defaultActorSystemName());
     }
 
+    /**
+     * @return a new {@link ActorSystemRuleBuilder} instance
+     * @deprecated use {@link ActorSystemRuleBuilder#builder()} instead
+     */
+    @Deprecated
     public static ActorSystemRuleBuilder builder() {
         return ActorSystemRuleBuilder.builder();
     }

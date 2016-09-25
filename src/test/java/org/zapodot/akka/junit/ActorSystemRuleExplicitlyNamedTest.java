@@ -9,7 +9,7 @@ import static org.junit.Assert.assertNotNull;
 public class ActorSystemRuleExplicitlyNamedTest {
 
     @Rule
-    public ActorSystemRule actorSystemRule = ActorSystemRuleImpl.builder().setName(getClass().getSimpleName()).build();
+    public ActorSystemRule actorSystemRule = ActorSystemRuleBuilder.builder().setName(getClass().getSimpleName()).build();
 
     @Test
     public void testNamedActorSystemIsRunning() throws Exception {

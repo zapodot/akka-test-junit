@@ -12,7 +12,7 @@ public class ActorSystemRuleBuilderTest {
 
     @Test
     public void testEnableEventListener() throws Exception {
-        final ActorSystemRuleBuilder actorSystemRuleBuilder = ActorSystemRuleImpl.builder().enableEventTestListener();
+        final ActorSystemRuleBuilder actorSystemRuleBuilder = ActorSystemRuleBuilder.builder().enableEventTestListener();
         final Config config = actorSystemRuleBuilder.currentConfig();
 
         assertEquals(TestEventListener.class.getName(), config.getStringList("akka.loggers").get(0));
@@ -22,12 +22,12 @@ public class ActorSystemRuleBuilderTest {
     @Test
     public void testEmptyConfig() throws Exception {
 
-        assertEquals(ConfigFactory.empty(), ActorSystemRuleImpl.builder().currentConfig());
+        assertEquals(ConfigFactory.empty(), ActorSystemRuleBuilder.builder().currentConfig());
     }
 
     @Test
     public void testAddExistingConfig() throws Exception {
-        assertEquals(ConfigFactory.empty(), ActorSystemRuleImpl.builder().setConfig(ConfigFactory.empty()).currentConfig());
+        assertEquals(ConfigFactory.empty(), ActorSystemRuleBuilder.builder().setConfig(ConfigFactory.empty()).currentConfig());
     }
 
     @Test
@@ -41,7 +41,7 @@ public class ActorSystemRuleBuilderTest {
 
     @Test
     public void testEnableEventLogging() throws Exception {
-        final ActorSystemRuleBuilder actorSystemRuleBuilder = ActorSystemRuleImpl.builder().enableEventLogging();
+        final ActorSystemRuleBuilder actorSystemRuleBuilder = ActorSystemRuleBuilder.builder().enableEventLogging();
         final Config config = actorSystemRuleBuilder.currentConfig();
         assertEquals(Slf4jLogger.class.getName(), config.getStringList("akka.loggers").get(0));
         assertEquals("DEBUG", config.getString("akka.loglevel"));
@@ -49,7 +49,7 @@ public class ActorSystemRuleBuilderTest {
 
     @Test
     public void testEnableReceiveDebugLogging() throws Exception {
-        assertEquals("on", ActorSystemRuleImpl.builder().enableReceiveDebugLogging().currentConfig().getString(
+        assertEquals("on", ActorSystemRuleBuilder.builder().enableReceiveDebugLogging().currentConfig().getString(
                 "akka.actor.debug.receive"));
     }
 
@@ -57,7 +57,7 @@ public class ActorSystemRuleBuilderTest {
     @Test
     public void testEnableLifecycleDebugLogging() throws Exception {
         assertEquals("on",
-                     ActorSystemRuleImpl.builder()
+                ActorSystemRuleBuilder.builder()
                                     .enableLifecycleDebugLogging()
                                     .currentConfig()
                                     .getString("akka.actor.debug.lifecycle"));
@@ -66,7 +66,7 @@ public class ActorSystemRuleBuilderTest {
 
     @Test
     public void testEnableLifecycleAndReceiveDebugLogging() throws Exception {
-        final Config config = ActorSystemRuleImpl.builder()
+        final Config config = ActorSystemRuleBuilder.builder()
                                              .enableLifecycleDebugLogging()
                                              .enableReceiveDebugLogging().currentConfig();
         assertEquals("on", config.getString("akka.actor.debug.lifecycle"));
@@ -77,7 +77,7 @@ public class ActorSystemRuleBuilderTest {
     @Test
     public void testEnableInMemoryJournal() throws Exception {
 
-        final Config config = ActorSystemRuleImpl.builder().enableInmemoryJournal().currentConfig();
+        final Config config = ActorSystemRuleBuilder.builder().enableInmemoryJournal().currentConfig();
         assertEquals("in-memory-journal", config.getString("akka.persistence.journal.plugin"));
     }
 

@@ -21,7 +21,7 @@ public class UnhandledMessageTest {
     }
 
     @Rule
-    public ActorSystemRule actorSystemRule = ActorSystemRuleImpl.builder().build();
+    public ActorSystemRule actorSystemRule = ActorSystemRuleBuilder.buildWithDefaults();
 
     @Test
     public void testUnhandled() throws Exception {
