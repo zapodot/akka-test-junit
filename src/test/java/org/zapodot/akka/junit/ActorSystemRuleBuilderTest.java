@@ -33,10 +33,10 @@ public class ActorSystemRuleBuilderTest {
     @Test
     public void testAddExistingConfigTwice() throws Exception {
         assertEquals(ConfigFactory.empty(),
-                     ActorSystemRuleImpl.builder()
-                                    .setConfig(ConfigFactory.empty())
-                                    .setConfig(ConfigFactory.empty())
-                                    .currentConfig());
+                ActorSystemRuleImpl.builder()
+                        .setConfig(ConfigFactory.empty())
+                        .setConfig(ConfigFactory.empty())
+                        .currentConfig());
     }
 
     @Test
@@ -58,17 +58,26 @@ public class ActorSystemRuleBuilderTest {
     public void testEnableLifecycleDebugLogging() throws Exception {
         assertEquals("on",
                 ActorSystemRuleBuilder.builder()
-                                    .enableLifecycleDebugLogging()
-                                    .currentConfig()
-                                    .getString("akka.actor.debug.lifecycle"));
+                        .enableLifecycleDebugLogging()
+                        .currentConfig()
+                        .getString("akka.actor.debug.lifecycle"));
+
+    }
+
+    @Test
+    public void testEnableEventLogLevelDEbug() throws Exception {
+        assertEquals("debug", ActorSystemRuleBuilder.builder()
+                .setEventLogLevelDebug()
+                .currentConfig()
+                .getString("akka.loglevel"));
 
     }
 
     @Test
     public void testEnableLifecycleAndReceiveDebugLogging() throws Exception {
         final Config config = ActorSystemRuleBuilder.builder()
-                                             .enableLifecycleDebugLogging()
-                                             .enableReceiveDebugLogging().currentConfig();
+                .enableLifecycleDebugLogging()
+                .enableReceiveDebugLogging().currentConfig();
         assertEquals("on", config.getString("akka.actor.debug.lifecycle"));
         assertEquals("on", config.getString("akka.actor.debug.receive"));
 
