@@ -19,19 +19,19 @@ As this library is distributed through the Sonatype OSS repository, it should be
 <dependency>
     <groupId>org.zapodot</groupId>
     <artifactId>akka-test-junit</artifactId>
-    <version>1.2.0</version>
+    <version>1.3.0</version>
     <scope>test</scope>
 </dependency>
 ```
 
 ### SBT
 ```scala
-libraryDependencies += "org.zapodot" % "akka-test-junit" % "1.2.0"
+libraryDependencies += "org.zapodot" % "akka-test-junit" % "1.3.0"
 ```
 
 ### Gradle
 ```groovy
-compile 'org.zapodot:akka-test-junit:1.2.0'
+compile 'org.zapodot:akka-test-junit:1.3.0'
 ```
 
 
@@ -153,6 +153,8 @@ public class SimpleAkkaTest {
 }
 ```
 ## Changelog
+* Version 1.3.0: Verifys that the ActorSystem is indeed properly shutdown. Allows a shutdown timeout to be set
+* Version 1.2.0: Add a new testKit() method that to create a JavaTestKit
 * Version 1.1.1: Fixed a bug in ActorSystemRuleBuilder that replaced the configuration instead of added to it
 * Version 1.1: Added the ActorSystemRuleBuilder and the ability to specify configuration and/or enable logging for the actor system
 * Version 1.0: First release
