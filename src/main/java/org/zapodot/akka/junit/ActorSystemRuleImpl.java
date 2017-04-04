@@ -3,8 +3,8 @@ package org.zapodot.akka.junit;
 import akka.actor.ActorSystem;
 import akka.actor.Props;
 import akka.actor.UnhandledMessage;
-import akka.testkit.JavaTestKit;
 import akka.testkit.TestActorRef;
+import akka.testkit.javadsl.TestKit;
 import com.typesafe.config.Config;
 import org.junit.rules.ExternalResource;
 import org.slf4j.Logger;
@@ -29,7 +29,7 @@ public class ActorSystemRuleImpl extends ExternalResource implements ActorSystem
     private ActorSystem actorSystem;
     private Config config = null;
     private TestActorRef<ConsumingActor> unhandledMessagesConsumer;
-    private JavaTestKit javaTestKit;
+    private TestKit javaTestKit;
     private final long shutdownTimeoutSeconds;
 
 
@@ -90,7 +90,7 @@ public class ActorSystemRuleImpl extends ExternalResource implements ActorSystem
     }
 
     @Override
-    public JavaTestKit testKit() {
+    public TestKit testKit() {
         return javaTestKit;
     }
 
@@ -101,7 +101,7 @@ public class ActorSystemRuleImpl extends ExternalResource implements ActorSystem
 
         unhandledMessagesConsumer = TestActorRef.create(actorSystem, Props.create(ConsumingActor.class), "unhandledMessagesConsumer");
         actorSystem.eventStream().subscribe(unhandledMessagesConsumer, UnhandledMessage.class);
-        javaTestKit = new JavaTestKit(actorSystem);
+        javaTestKit = new TestKit(actorSystem);
 
     }
 
@@ -109,10 +109,8 @@ public class ActorSystemRuleImpl extends ExternalResource implements ActorSystem
     protected void after() {
 
         javaTestKit = null;
-        if (!actorSystem.isTerminated()) {
-            LOGGER.debug("Shutting down ActorSystem \"{}\"", name);
-            JavaTestKit.shutdownActorSystem(actorSystem, Duration.apply(shutdownTimeoutSeconds, TimeUnit.SECONDS), true);
-        }
+        LOGGER.debug("Shutting down ActorSystem \"{}\"", name);
+        TestKit.shutdownActorSystem(actorSystem, Duration.apply(shutdownTimeoutSeconds, TimeUnit.SECONDS), true);
         actorSystem = null;
     }
 
