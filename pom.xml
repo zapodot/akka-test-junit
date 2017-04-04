@@ -8,7 +8,7 @@
     <name>${project.artifactId}</name>
     <url>https://github.com/zapodot/akka-test-junit</url>
     <prerequisites>
-        <maven>3.0.4</maven>
+        <maven>3.2.0</maven>
     </prerequisites>
     <developers>
         <developer>
@@ -43,7 +43,7 @@
         <akka-persistence-inmemory.version>0.2.1</akka-persistence-inmemory.version>
         <maven-gpg-plugin.version>1.6</maven-gpg-plugin.version>
         <maven-javadoc-plugin.version>2.10.2</maven-javadoc-plugin.version>
-        <nexus-staging-maven-plugin.version>1.6.5</nexus-staging-maven-plugin.version>
+        <nexus-staging-maven-plugin.version>1.6.8</nexus-staging-maven-plugin.version>
         <maven-source-plugin.version>2.4</maven-source-plugin.version>
         <coveralls-maven-plugin.version>3.1.0</coveralls-maven-plugin.version>
         <jacoco-maven-plugin.version>0.7.5.201505241946</jacoco-maven-plugin.version>
@@ -140,8 +140,8 @@
                 <artifactId>maven-compiler-plugin</artifactId>
                 <version>3.1</version>
                 <configuration>
-                    <source>1.7</source>
-                    <target>1.7</target>
+                    <source>1.8</source>
+                    <target>1.8</target>
                 </configuration>
             </plugin>
             <plugin>
