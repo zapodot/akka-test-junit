@@ -174,7 +174,7 @@
                     <encoding>UTF-8</encoding>
                     <links>
                         <link>http://junit.org/junit4/javadoc/latest/</link>
-                        <link>http://docs.oracle.com/javase/7/docs/api/</link>
+                        <link>http://docs.oracle.com/javase/8/docs/api/</link>
                         <link>http://doc.akka.io/japi/akka/${akka.version}/</link>
                     </links>
                     <locale>en</locale>
