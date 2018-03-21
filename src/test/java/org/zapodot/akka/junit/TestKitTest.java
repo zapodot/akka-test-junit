@@ -1,14 +1,17 @@
 package org.zapodot.akka.junit;
 
-import akka.actor.ActorRef;
-import akka.actor.Props;
-import akka.actor.UntypedActor;
-import akka.testkit.JavaTestKit;
+import java.util.concurrent.TimeUnit;
+
 import org.junit.Rule;
 import org.junit.Test;
-import scala.concurrent.duration.FiniteDuration;
 
-import java.util.concurrent.TimeUnit;
+import akka.actor.ActorRef;
+import akka.actor.Props;
+import akka.actor.UnhandledMessage;
+import akka.actor.UntypedActor;
+import akka.testkit.JavaTestKit;
+import akka.testkit.TestKit;
+import scala.concurrent.duration.FiniteDuration;
 
 public class TestKitTest {
 
@@ -35,12 +38,12 @@ public class TestKitTest {
 
     @Test
     public void testRule() throws Exception {
-        final JavaTestKit javaTestKit = testKitRule.testKit();
-        final ActorRef testActor = javaTestKit.getTestActor();
+        final TestKit testKit = testKitRule.testKit();
+        final ActorRef testActor = testKit.testActor();
 
         final String message = "test";
         testActor.tell(message, ActorRef.noSender());
-        javaTestKit.expectMsgEquals(message);
+        testKit.expectMsg(message);
 
     }
 
@@ -48,15 +51,14 @@ public class TestKitTest {
     public void testRuleAsync() throws Exception {
         final Props simpleActorProps = Props.create(SimpleActor.class);
         final ActorRef simpleActorRef = testKitRule.system().actorOf(simpleActorProps);
-        final JavaTestKit testProbe = testKitRule.testKit();
+        final TestKit testProbe = testKitRule.testKit();
 
         final String msg = "Hello AKKA";
-        simpleActorRef.tell(msg, testProbe.getTestActor());
-        testProbe.expectMsgEquals(FiniteDuration.apply(3L, TimeUnit.SECONDS), msg);
+		simpleActorRef.tell(msg, testProbe.testActor());
+        testProbe.expectMsg(FiniteDuration.apply(3L, TimeUnit.SECONDS), msg);
 
         final long numberMsg = 28938L;
-        simpleActorRef.tell(numberMsg, testProbe.getTestActor());
+        simpleActorRef.tell(numberMsg, testProbe.testActor());
         testKitRule.isUnhandled(numberMsg);
-
     }
 }
