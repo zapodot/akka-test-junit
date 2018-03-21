@@ -1,8 +1,10 @@
 package org.zapodot.akka.junit;
 
+import org.junit.rules.TestRule;
+
 import akka.actor.ActorSystem;
 import akka.testkit.JavaTestKit;
-import org.junit.rules.TestRule;
+import akka.testkit.TestKit;
 
 /**
  * General contract for a JUnit rule that starts an ActorSystem before running a test (or a class of test).
@@ -42,6 +44,6 @@ public interface ActorSystemRule extends TestRule {
      *
      * @return the {@link JavaTestKit} instance that was created before the test ran
      */
-    JavaTestKit testKit();
+	TestKit testKit();
 
 }
