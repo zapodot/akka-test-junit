@@ -3,7 +3,7 @@ package org.zapodot.akka.junit;
 import akka.actor.ActorRef;
 import akka.actor.Props;
 import akka.actor.UntypedActor;
-import akka.testkit.JavaTestKit;
+import akka.testkit.javadsl.TestKit;
 import org.junit.Rule;
 import org.junit.Test;
 import scala.concurrent.duration.FiniteDuration;
@@ -35,7 +35,7 @@ public class TestKitTest {
 
     @Test
     public void testRule() throws Exception {
-        final JavaTestKit javaTestKit = testKitRule.testKit();
+        final TestKit javaTestKit = testKitRule.testKit();
         final ActorRef testActor = javaTestKit.getTestActor();
 
         final String message = "test";
@@ -48,7 +48,7 @@ public class TestKitTest {
     public void testRuleAsync() throws Exception {
         final Props simpleActorProps = Props.create(SimpleActor.class);
         final ActorRef simpleActorRef = testKitRule.system().actorOf(simpleActorProps);
-        final JavaTestKit testProbe = testKitRule.testKit();
+        final TestKit testProbe = testKitRule.testKit();
 
         final String msg = "Hello AKKA";
         simpleActorRef.tell(msg, testProbe.getTestActor());

@@ -1,7 +1,7 @@
 package org.zapodot.akka.junit;
 
 import akka.actor.ActorSystem;
-import akka.testkit.JavaTestKit;
+import akka.testkit.javadsl.TestKit;
 import org.junit.rules.TestRule;
 
 /**
@@ -38,10 +38,10 @@ public interface ActorSystemRule extends TestRule {
     ActorSystem system();
 
     /**
-     * Convienience method that provides easy access to a {@link JavaTestKit} instance.
+     * Convienience method that provides easy access to a {@link TestKit} instance.
      *
-     * @return the {@link JavaTestKit} instance that was created before the test ran
+     * @return the {@link TestKit} instance that was created before the test ran
      */
-    JavaTestKit testKit();
+    TestKit testKit();
 
 }

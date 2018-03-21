@@ -131,7 +131,7 @@ public class ActorSystemRuleBuilder {
      * Allows the developer to tune the shutdown timeout which is the maximum number of seconds to wait while shutting
      * down the ActorSystem. Will default to {@link ActorSystemRule#DEFAULT_SHUTDOWN_TIMEOUT} if this method is not called.
      *
-     * @param shutdownTimeoutInSeconds
+     * @param shutdownTimeoutInSeconds the number of seconds before ActorSystem shutdown will time out
      * @return the same builder with the shutdown timeout set
      */
     public ActorSystemRuleBuilder withShutdownTimeoutInSeconds(final long shutdownTimeoutInSeconds) {
