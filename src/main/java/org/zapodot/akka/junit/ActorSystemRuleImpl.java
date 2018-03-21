@@ -95,7 +95,7 @@ public class ActorSystemRuleImpl extends ExternalResource implements ActorSystem
     }
 
     @Override
-    protected void before() throws Throwable {
+    protected void before() {
         LOGGER.debug("Instantiating ActorSystem \"{}\"", name);
         actorSystem = config == null ? ActorSystem.create(name) : ActorSystem.create(name, config);
 
@@ -109,7 +109,6 @@ public class ActorSystemRuleImpl extends ExternalResource implements ActorSystem
     protected void after() {
 
         javaTestKit = null;
-        LOGGER.debug("Shutting down ActorSystem \"{}\"", name);
         TestKit.shutdownActorSystem(actorSystem, Duration.apply(shutdownTimeoutSeconds, TimeUnit.SECONDS), true);
         actorSystem = null;
     }
