@@ -9,8 +9,7 @@
 
 Provides a JUnit rule for controlled testing of [Akka](http://akka.io) actors using [JUnit](http://junit.org).
 
-
-Tested with Akka 2.3.15 and JUnit 4.12. This tool, including the source code is made available under an Apache 2.0 license.
+Tested with Akka 2.5.11 and JUnit 4.12. This tool, including the source code is made available under an Apache 2.0 license.
 
 ## Add dependency
 As this library is distributed through the Sonatype OSS repository, it should be easy to add it to your project
@@ -20,19 +19,19 @@ As this library is distributed through the Sonatype OSS repository, it should be
 <dependency>
     <groupId>org.zapodot</groupId>
     <artifactId>akka-test-junit</artifactId>
-    <version>1.3.0</version>
+    <version>2.0.0</version>
     <scope>test</scope>
 </dependency>
 ```
 
 ### SBT
 ```scala
-libraryDependencies += "org.zapodot" % "akka-test-junit" % "1.3.0"
+libraryDependencies += "org.zapodot" % "akka-test-junit" % "2.0.0"
 ```
 
 ### Gradle
 ```groovy
-compile 'org.zapodot:akka-test-junit:1.3.0'
+compile 'org.zapodot:akka-test-junit:2.0.0'
 ```
 
 
@@ -47,7 +46,7 @@ public class SimpleAkkaTest {
     public ActorSystemRule actorSystemRule = new ActorSystemRuleBuilder().setName(getClass().getSimpleName()).build();
 
     @Test
-    public void testRuleUsingASingleActor() throws Exception {
+    public void testRuleUsingASingleActor()  {
         final TestActorRef<SimpleActor> actorTestActorRef = TestActorRef.create(actorSystemRule.system(),
                                                                           Props.create(SimpleActor.class));
         final String message = "test";
@@ -78,7 +77,7 @@ public class SimpleAkkaTest {
     public static ActorSystemRule actorSystemRule = ActorSystemRule.builder().setName(getClass().getSimpleName()).build();
 
     @Test
-    public void testRuleUsingASingleActor() throws Exception {
+    public void testRuleUsingASingleActor() {
         final TestActorRef<SimpleActor> actorTestActorRef = TestActorRef.create(actorSystemRule.system(),
                                                                           Props.create(SimpleActor.class));
         final String message = "test";
@@ -88,7 +87,7 @@ public class SimpleAkkaTest {
     }
     
     @Test
-    public void testAnotherThing() throws Exception {
+    public void testAnotherThing() {
         final TestActorRef<SimpleActor> actorTestActorRef = TestActorRef.create(actorSystemRule.system(),
                                                                                   Props.create(SimpleActor.class));
         // Will use the same actorSystem instance as in the previous test. NB! Be aware of JUnit's ordering rules                                                                         
@@ -154,7 +153,8 @@ public class SimpleAkkaTest {
 }
 ```
 ## Changelog
-* Version 1.3.0: Verifys that the ActorSystem is indeed properly shutdown. Allows a shutdown timeout to be set
+* Version 2.0.0: Akka 2.5.0 support - support for previous versions are dropped. Java baseline is 1.8
+* Version 1.3.0: Verifies that the ActorSystem is indeed properly shutdown. Allows a shutdown timeout to be set
 * Version 1.2.0: Add a new testKit() method that to create a JavaTestKit
 * Version 1.1.1: Fixed a bug in ActorSystemRuleBuilder that replaced the configuration instead of added to it
 * Version 1.1: Added the ActorSystemRuleBuilder and the ability to specify configuration and/or enable logging for the actor system
