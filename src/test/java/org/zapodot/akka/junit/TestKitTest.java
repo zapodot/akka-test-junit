@@ -7,6 +7,7 @@ import org.junit.Test;
 
 import akka.actor.ActorRef;
 import akka.actor.Props;
+import akka.actor.UnhandledMessage;
 import akka.actor.UntypedActor;
 import akka.testkit.JavaTestKit;
 import akka.testkit.TestKit;
@@ -59,6 +60,5 @@ public class TestKitTest {
         final long numberMsg = 28938L;
         simpleActorRef.tell(numberMsg, testProbe.testActor());
         testKitRule.isUnhandled(numberMsg);
-
     }
 }

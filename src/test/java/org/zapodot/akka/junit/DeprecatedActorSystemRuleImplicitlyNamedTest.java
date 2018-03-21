@@ -1,10 +1,10 @@
 package org.zapodot.akka.junit;
 
+import static org.hamcrest.CoreMatchers.*;
+import static org.junit.Assert.*;
+
 import org.junit.Rule;
 import org.junit.Test;
-
-import static org.hamcrest.CoreMatchers.equalTo;
-import static org.junit.Assert.*;
 
 @SuppressWarnings("deprecation")
 public class DeprecatedActorSystemRuleImplicitlyNamedTest {
@@ -18,7 +18,7 @@ public class DeprecatedActorSystemRuleImplicitlyNamedTest {
     public ActorSystemRule anotherActorSystemRule = ActorSystemRuleImpl.builder().setName(SECOND_SYSTEM_NAME).build();
 
     @Test
-    public void testActorSystemIsRunning() throws Exception {
+    public void testActorSystemIsRunning()  {
         assertNotNull(actorSystemRule.system());
         assertTrue(actorSystemRule.system().name().startsWith(ActorSystemRuleBuilder.IMPLICIT_NAME_PREFIX));
 
