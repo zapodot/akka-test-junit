@@ -1,4 +1,5 @@
 # Akka Test JUNIT 
+__Not maintained any more__
 
 [![Flattr this git repo](http://api.flattr.com/button/flattr-badge-large.png)](https://flattr.com/submit/auto?user_id=zapodot&url=https://github.com/zapodot/akka-test-junit&title=akka-test-junit&language=&tags=github&category=software)
 [![Build Status](https://travis-ci.org/zapodot/akka-test-junit.svg?branch=master)](https://travis-ci.org/zapodot/akka-test-junit)
